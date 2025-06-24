@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Leaf Disease Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>🍃 Leaf Disease Classifier</h1>
+
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if prediction %}
+        <div class="result">
+          <h2>Prediction: <span>{{ prediction }}</span></h2>
+          <img src="{{ url_for('static', filename='uploads/' + filename) }}"
+               alt="Uploaded Image">
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
